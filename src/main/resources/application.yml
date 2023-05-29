@@ -1,6 +1,24 @@
 server:
-  port: 8080
+  port: 8081
+  error:
+    include-message: always
 
+spring:
   spring:
-    main:
-      web-application-type: servlet
+    profiles:
+      active: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customer
+    username: amigoscode
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  main:
+    web-application-type: servlet

@@ -1,5 +1,6 @@
 package com.amigoscode.customer;
 
+import com.amigoscode.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,8 +10,9 @@ public class CustomerService {
 
     private final CustomerDao customerDAO;
 
-    public CustomerService(CustomerDao customerDAO) {
-        this.customerDAO = customerDAO;
+    public CustomerService(CustomerDao customerDao) {
+
+        this.customerDAO = customerDao;
     }
 
     public List<Customer> getAllCustomers() {
@@ -20,8 +22,15 @@ public class CustomerService {
 
     public Customer getCustomerById(Integer id) {
         return customerDAO.selectCustomerById(id)
-                .orElseThrow(() -> new IllegalArgumentException(
+                .orElseThrow(() -> new ResourceNotFound(
                         "customer with id [%s] not found".formatted(id)
+                ));
+    }
+
+    public Customer getCustomerByName(String name) {
+        return customerDAO.selectCustomerByName(name)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "customer with id [%s] not found".formatted(name)
                 ));
     }
 }

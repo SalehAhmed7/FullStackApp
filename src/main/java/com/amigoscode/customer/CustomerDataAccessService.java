@@ -1,6 +1,5 @@
 package com.amigoscode.customer;
 
-import com.amigoscode.Main;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -36,6 +35,11 @@ public class CustomerDataAccessService implements CustomerDao {
     public Optional<Customer> selectCustomerById(Integer id) {
         return customers.stream()
                 .filter(c -> c.getId().equals(id)).findFirst();
+    }
+
+    @Override
+    public Optional<Customer> selectCustomerByName(String name) {
+        return selectCustomerByName(name);
     }
 
 

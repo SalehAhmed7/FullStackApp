@@ -1,11 +1,10 @@
 package com.amigoscode;
 
-import com.amigoscode.customer.Customer;
-import com.amigoscode.customer.CustomerController;
-import com.amigoscode.customer.CustomerDataAccessService;
-import com.amigoscode.customer.CustomerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.ConfigurableApplicationContext;
+
 
 @SpringBootApplication
 public class Main {
@@ -17,11 +16,11 @@ public class Main {
                 new CustomerController(customerService);
 
         */
-        SpringApplication.run(Main.class, args);
+        ConfigurableApplicationContext applicationContext =
+                SpringApplication.run(Main.class, args);
 
     }
 }
-
 
 
 
